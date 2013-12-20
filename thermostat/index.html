@@ -1,0 +1,106 @@
+<html>
+<head>
+   <title>WarmMe</title>
+   <link rel="stylesheet" type="text/css" href="css/thermostat.css" media="screen" />
+   <script src="../js/jquery-2.0.3.js"></script>
+   <script src="../js/jquery.knob.js"></script>
+   
+   <script>
+$(function() {
+   $(".knob").knob({
+      'min':130,
+      'max':250,
+      'angleOffset':30,
+      'angleArc':300,
+      'cursor':true,
+      'thickness':.2,
+      'width':150,
+      'height':150,
+      'step':1,
+       'change' : function (v) { setTemp(v); }
+      });
+});
+
+// Get temperature
+function setTemp(val) {
+      $("label[for='temp']").html(val/10);
+}
+
+function setMargins() {
+  var width=$(window).width();
+  var containerWidth=$("#main").width();
+  var leftMargin=(width-containerWidth)/2;
+  $("#main").css("margin-left",leftMargin);
+}
+
+$(document).ready(function() {
+//per gli smartphone se non visualizzi il div principale al centro dello schermo prova a decommentare la riga seguente
+//$('#main').focus();
+  setMargins();
+  $(window).resize(function() {
+        setMargins();
+    });
+  setTemp(185);
+});
+
+function setMargins() {
+  var width=$(window).width();
+  var containerWidth=$("#main").width();
+  var leftMargin=(width-containerWidth)/2;
+  $("#main").css("margin-left",leftMargin);
+}
+
+$(document).ready(function() {
+//per gli smartphone se non visualizzi il div principale al centro dello schermo prova a decommentare la riga seguente
+//$('#main').focus();
+  setMargins();
+  $(window).resize(function() {
+        setMargins();
+    });
+  getTemp();
+});
+
+</script>
+</head>
+<body>
+
+<div class="container" id="main">
+    <!-- OUTER SHADOW -->
+    <div class="de">
+        <!-- TEXT -->
+        <div class="den">
+            <!-- LINE -->
+            <hr class="line">
+            <hr class="line">
+            <hr class="line">
+            <!-- SWITCH -->
+            <div class="switch" style="display:block">
+                <!-- TEXT -->
+                <label for="switch_0"><span>AUTO</span></label>
+                <label for="switch_1"><span>15&deg;</span></label>
+                <label for="switch_2"><span>17&deg;</span></label>
+                <label for="switch_3"><span>19&deg;</span></label>
+                <label for="switch_4"><span>21&deg;</span></label>
+                <label for="switch_5"><span>23&deg;</span></label>
+
+                <!-- LIGHT -->
+                <div class="light"></div>
+                <!-- CENTER -->
+                <div class="dene">
+                    <div class="denem">
+                        <div class="deneme">
+                          <span><label for="temp" class"tempValue"></label></span>
+                              <div class="knobDiv">
+																<input class="knob">
+															</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
