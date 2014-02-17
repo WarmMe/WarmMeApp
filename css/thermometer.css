@@ -1,8 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Dosis:200,400,500,600);
-html, body { height: 100%; }
-body { background: #f2f2f2; }
 
-.container { width: 300px; margin: 10px auto 0; }
+.container { position:absolute; display:block; width:300px; }
 .de .den, .de .dene, .de .denem, .de .deneme { position: absolute;  left: 50%; top: 50%; }
 .de {
     position: relative;

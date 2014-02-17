@@ -22,8 +22,8 @@ while ($output !~ /YES/g && $attempts < 5)
         $attempts++;
 }
 
-my $file = $scriptDir . '/../sensors/thSensor01'; 
-#print $file;
+my $file = $scriptDir . '/../data/sensors/thSensor01'; 
+print $file;
 open (TEMPFILE, '>' . $file);
 print TEMPFILE $temp;
 close (TEMPFILE);
