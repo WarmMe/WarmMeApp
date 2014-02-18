@@ -1,0 +1,19 @@
+#!/usr/bin/python
+# set gpio18 to high when content of file state is 'ON'
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(12, GPIO.OUT)
+
+while True:
+	state = open('./state', 'r')
+	if "ON" in state.read(2):
+		print 'HIGH'
+		GPIO.output(12, GPIO.HIGH)
+	else:
+		print 'LOW'
+		GPIO.output(12, GPIO.LOW)
+	time.sleep(5)
+
+

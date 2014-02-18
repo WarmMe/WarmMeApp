@@ -1,0 +1,21 @@
+#!/bin/sh
+while true
+        do
+                link=0
+                while [ $link -eq 0 ]
+                do
+                        if ! iwconfig wlan0 | grep "(our SSID)" > /dev/null
+                        then
+                                echo "link is down, restaring wlan0..."
+                                ifdown wlan0
+                                sleep 5s
+                                ifup wlan0
+				sleep 30s
+                        else
+                                echo "link is up, waiting 30 seconds..."
+                                link=1
+                        fi
+                done
+        sleep 30s
+done
+exit 0
