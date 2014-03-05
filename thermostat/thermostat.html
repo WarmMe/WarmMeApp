@@ -1,15 +1,15 @@
 <html>
 <head>
    <title>WarmMe</title>
-   <link rel="stylesheet" type="text/css" href="thermostat/css/thermostat.css" media="screen" />
-   <script src="js/jquery-2.0.3.js"></script>
-   <script src="js/jquery.knob.js"></script>
+   <link rel="stylesheet" type="text/css" href="../css/thermostat.css" media="screen" />
+   <script src="../js/jquery-2.0.3.js"></script>
+   <script src="../js/jquery.knob.js"></script>
    
    <script>
 $(function() {
    $(".knob").knob({
-      'min':130,
-      'max':250,
+      'min':150,
+      'max':270,
       'angleOffset':30,
       'angleArc':300,
       'cursor':true,
@@ -21,9 +21,15 @@ $(function() {
       });
 });
 
-// Get temperature
+// set temperature
 function setTemp(val) {
       $("label[for='temp']").html(val/10);
+}
+
+// Set temperature to DB
+function writeTemp(val) {
+	alert(val);
+	$.post("../api/thermostat/setTargetTemperature.php", {tempValue:val}, function (data) {});
 }
 
 function setMargins() {
@@ -77,11 +83,11 @@ $(document).ready(function() {
             <div class="switch" style="display:block">
                 <!-- TEXT -->
                 <label for="switch_0"><span>AUTO</span></label>
-                <label for="switch_1"><span>15&deg;</span></label>
-                <label for="switch_2"><span>17&deg;</span></label>
-                <label for="switch_3"><span>19&deg;</span></label>
-                <label for="switch_4"><span>21&deg;</span></label>
-                <label for="switch_5"><span>23&deg;</span></label>
+                <label for="switch_1"><span>17&deg;</span></label>
+                <label for="switch_2"><span>19&deg;</span></label>
+                <label for="switch_3"><span>21&deg;</span></label>
+                <label for="switch_4"><span>23&deg;</span></label>
+                <label for="switch_5"><span>25&deg;</span></label>
 
                 <!-- LIGHT -->
                 <div class="light"></div>
@@ -89,7 +95,7 @@ $(document).ready(function() {
                 <div class="dene">
                     <div class="denem">
                         <div class="deneme">
-                          <span><label for="temp" class"tempValue"></label></span>
+                          <span><label for="temp" id="tempValue"></label></span>
                               <div class="knobDiv">
 																<input class="knob">
 															</div>
@@ -101,6 +107,10 @@ $(document).ready(function() {
     </div>
 </div>
 </div>
-
+<!-- button -->
+	<div>
+		<input id="setTemp" type="button" value="setTemp" style"align:center" onclick="writeTemp($('#tempValue').text())" /> 
+		<!-- <input id="setTemp" type="button" value="setTemp" onclick="writeTemp( $("label[for='temp']").text() )" /> -->
+	</div>
 </body>
 </html>

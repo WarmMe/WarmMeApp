@@ -30,7 +30,7 @@ while ($output !~ /YES/g && $attempts < 5)
         }
  
         $attempts++;
-				$statement->execute($temp);
+	$statement->execute($temp);
 }
 
 sub ConnectToMySql {
