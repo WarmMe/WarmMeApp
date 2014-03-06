@@ -15,22 +15,25 @@ my $temp=0;
 #----------------------------------------------------------------------
 my $connection = ConnectToMySql();
 # set the value of your SQL query
-my $query = "insert into tempMonitor(tempValue) values(?) ";
+my $queryInsert = "insert into tempMonitor(tempValue) values(?) ";
+my $queryGetCorrectionPar = "select value from parameters where Param like 'CorrectionValueTHSensor01'";
 
-# prepare your statement for connecting to the database
-my $statement = $connection->prepare($query);
+# prepare  statement for connecting to the database
+my $statementInsert = $connection->prepare($queryInsert);
 
-while ($output !~ /YES/g && $attempts < 5)
-{
+my $statementGet = $connection->prepare($queryGetCorrectionPar);
+$statementGet->execute();
+my $correctionValParam = $statementGet->fetchrow_array;
+
+while ($output !~ /YES/g && $attempts < 5) {
         $output = `cat /sys/bus/w1/devices/28-*/w1_slave 2>&1`;
-        if($output !~ /NO/g)
-        {
+        if($output !~ /NO/g) {
                 $output =~ /t=(\d+)/i;
-                $temp = ($is_celsius) ? ($1 / 1000) : ($1 / 1000) * 9/5 + 32;
-        }
- 
+                $temp = ($is_celsius) ? (($1 - $correctionValParam)  / 1000) : (($1 - $correctionValParam) / 1000) * 9/5 + 32;
+		print "Temperature:".$temp;
+	} 
         $attempts++;
-	$statement->execute($temp);
+	$statementInsert->execute($temp);
 }
 
 sub ConnectToMySql {
