@@ -1,0 +1,3 @@
+- temperatura -> OK (prevedi 2° sensore + igrometro)
+- fiammina_ javascript controlla con api php se termostato acceso o spento
+- Previsioni meteo -> cerca altro widget (http://monkeecreate.github.io/jquery.simpleWeather/ )

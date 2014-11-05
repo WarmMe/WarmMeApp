@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>WarmMe</title>
+	<meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=1.0, user-scalable=no" />
+
+	<!-- Commons -->
+	<script src="../js/jquery-2.0.3.js"></script>
+	<script src="../js/index.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/index.css" />
+	
+	<!-- SideBarMenu -->
+	<link rel="stylesheet" type="text/css" href="../css/sidebarMenu/normalize.css" />
+	<!-- <link rel="stylesheet" type="text/css" href="../css/sidebarMenu/main.css" /> -->
+	<link rel="stylesheet" type="text/css" href="../css/sidebarMenu/icons.css" />
+	<link rel="stylesheet" type="text/css" href="../css/sidebarMenu/component.css" />
+	<script src="../js/sidebarMenu/modernizr.custom.js"></script>
+	
+	<script>
+		$(document).ready(function() {
+			loadMain();
+		});
+	</script>
+</head>
+
+<body>
+	<div id="st-container" class="st-container">
+		<nav class="st-menu st-effect-4" id="menu-4">
+		<h2 class="icon icon-fire">WarmMe</h2>
+			<ul>
+				<li><a class="icon icon-tag" href="javascript:loadMain()">Status</a></li> <!-- ADD JAVASCRIPT RELOAD DIV MainPanel -->
+				<li><a class="icon icon-params" href="javascript:loadThermostat()">Thermostat</a></li> <!-- ADD JAVASCRIPT RELOAD DIV MainPanel -->
+				<li><a class="icon icon-clock" href="javascript:loadCalendar()">Schedule</a></li> <!-- ADD JAVASCRIPT RELOAD DIV MainPanel -->
+				<li><a class="icon icon-settings" href="javascript:loadMeteo()">Settings</a></li> <!-- ADD JAVASCRIPT RELOAD DIV MainPanel -->
+			</ul>
+		</nav>
+
+		<!-- content push wrapper -->
+		<div class="st-pusher">
+			<div class="st-content"><!-- this is the wrapper for the content -->
+				<div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
+					<div id="st-trigger-effects" >
+						<button data-effect="st-effect-4" class="buttonMenu icon-settings"></button>
+					</div>
+
+					<!-- MAIN PANEL DIV, REPLACED FROM SIDEBAR MENU SELECTION -->
+					<div id="mainPanel" class="mainPanel">
+					</div>
+
+				</div><!-- /st-content-inner -->
+			</div><!-- /st-content -->
+		</div><!-- /st-pusher -->
+	</div><!-- /st-container -->
+	<script src="../js/sidebarMenu/classie.js"></script>
+	<script src="../js/sidebarMenu/sidebarEffects.js"></script>
+</body>
+</html>

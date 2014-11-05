@@ -1,0 +1,16 @@
+<script src="../js/jquery.knob.js"></script>
+<script src="../js/thermostat.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/thermostat.css" />
+
+<div id="thermostat">
+	<div class="tempSelector">
+		<input id="buttonAuto" type="button" value="Auto" onclick = "disableBtnManual()"/>
+		<input id="buttonManual" type="button" value="Manual" onclick = "disableBtnAuto()"/>
+		<input id="buttonOff" type="button" value="Off" onclick = "disableBtnAll()"/>
+		
+		<input id="knobTempSelector" class="knobTempSelector">
+		
+		<label for="tempValue" id="tempValue"></label>
+		<input id="setTemp" type="button" class="tempSelector" value="setTemp"  onclick="writeTemp($('#tempValue').text())" /> 
+	</div>
+</div>

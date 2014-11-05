@@ -1,0 +1,80 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+/* *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; } */
+
+html,
+body,
+.st-container,
+.st-pusher,
+.st-content {
+	height: 100%;
+	width: 100%;
+	font-family: 'Lato', Arial, sans-serif;
+	/*text-shadow:0.5px 0.5px #FBF7E8;*/
+}
+
+body {
+	color: #5a5350;
+	font-weight: 300;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+a {
+	text-decoration: none;
+	color: #ed8151;
+	outline: none;
+}
+
+a:hover, a:focus {
+	color: #e86a32;
+	outline: none;
+}
+
+.codrops-icon:before {
+	margin: 0 4px;
+	text-transform: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-family: 'codropsicons';
+	line-height: 1;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.codrops-icon-drop:before {
+	content: "\e001";
+}
+
+.codrops-icon-prev:before {
+	content: "\e004";
+}
+
+.buttonMenu {
+	font-family: 'linecons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	display: inline-block;
+	vertical-align: bottom;
+	margin-right: 0.8em;
+	font-size: 1.8em;
+	-webkit-font-smoothing: antialiased;
+	border: none;
+	padding: 0.3em 0.3em;
+	background: #ed8151;
+	color: #fff;	cursor: pointer;
+	display: inline-block;
+	border-radius: 1px;
+	font-weight: 400;
+	outline: none;
+}
+
+.buttonMenu:hover,
+.buttonMenu:active {
+	background: #e86a32;
+}
