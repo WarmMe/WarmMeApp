@@ -12,9 +12,6 @@ function getTemp() {
 		var dec = split[1];
 		$("label[for='thermometer']").html(int + "." + dec + "<strong>&deg;</strong>");
 	});
-	
-	// Debug without pi
-	$("label[for='thermometer']").html("20.5<strong>&deg;</strong>");
 };
 
 // Get status
