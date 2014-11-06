@@ -9,9 +9,9 @@ $con = mysql_connect($hostname, $username, $password)
 
 mysql_select_db('warmme', $con) or die(mysql_error());
 
-$result = mysql_query("SELECT * from tempStatus", $con) or die(mysql_error());
+$result = mysql_query("SELECT * from tempActivation order by created desc", $con) or die(mysql_error());
 //fetch tha data from the database
 $row = mysql_fetch_array($result);
-$data = round($row{'tempStatus'},1);
+$data = $row{'state'};
 echo $data
 ?>

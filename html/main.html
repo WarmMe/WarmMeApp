@@ -3,17 +3,17 @@
 	
 	<div id="widgets" class="mainPanel">
 		<!-- Temperature widget -->
-		<div id="tempWidget">
+		<div id="tempWidget" class="mainWidget">
 			<label id="labelThermometer" class="labelMain">
 				Temperature:
 			</label>
 			<div id="thermometerValues">
-				<label for="thermometer" class="valueMain"></label><label class="flameicon icon-fire pulse1"></label>
+				<label for="thermometer" class="valueMain"></label><label for="flameIcon" class="flameIcon"></label>
 			</div>
 		</div>
 
 		<!-- Temperature time widget -->
-		<div id="timeWidget" >
+		<div id="timeWidget" class="mainWidget">
 			<label id="labelDateTime" class="labelMain">
 				Date & Time:
 			</label>
@@ -23,12 +23,10 @@
 		</div>
 
 		<!-- Meteo widget> -->
-		<div id="meteoWidget">
-		<a href="http://www.accuweather.com/en/it/brescia/214041/weather-forecast/214041" class="aw-widget-legal"/></a>
-		<div id="awcc1414020133213" class="aw-widget-current"  data-locationkey="" data-unit="f" data-language="en-us" data-useip="true" data-uid="awcc1414020133213"></div>
-		<script type="text/javascript" src="http://oap.accuweather.com/launch.js"></script>
-
-		<!-- heater system on/off -->
-		<div id="heatingStatus"></div>
+		<div id="meteoWidget" class="mainWidget">
+			<a href="http://www.accuweather.com/en/it/brescia/214041/weather-forecast/214041" class="aw-widget-legal"/></a>
+			<div id="awcc1414020133213" class="aw-widget-current"  data-locationkey="" data-unit="f" data-language="en-us" data-useip="true" data-uid="awcc1414020133213"></div>
+			<script type="text/javascript" src="http://oap.accuweather.com/launch.js"></script>
+		</div>
 	</div>
 </header>

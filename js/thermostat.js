@@ -1,3 +1,7 @@
+$(document).ready(function() {
+	refreshTemp();
+});
+
 $(function() {
 	$(".knobTempSelector").knob({
 		'min':150,
@@ -29,7 +33,6 @@ function disableBtnManual() {
 	document.getElementById('buttonManual').setAttribute('disabled', 'disabled');
 }
 
-
 function disableBtnAuto() {
 	document.getElementById('buttonAuto').setAttribute('disabled', 'disabled');
 }
@@ -38,3 +41,19 @@ function disableBtnAll() {
 	document.getElementById('buttonAuto').setAttribute('disabled', 'disabled');
 	document.getElementById('buttonManual').setAttribute('disabled', 'disabled');
 }
+
+// Get temperature
+function getTemp() {
+	$.get( "../api/sensors/getThSensorValue.php", function ( data ) {
+		var split = data.split('.');
+		var int = split[0];
+		var dec = split[1];
+		$("label[for='tempValue']").html(int + "." + dec + "<strong>&deg;</strong>");
+	});
+};
+
+// Get temperature
+function refreshTemp() {
+	getTemp();
+	setTimeout(refreshTemp,5000);
+};

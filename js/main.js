@@ -14,20 +14,26 @@ function getTemp() {
 	});
 };
 
-// Get status
-function getStatus() {
-	/*
-	$.get( "../api/sensors/getActivationStatus.php", function ( data ) {
-		if data="ON"
-			label icona ->  class="flameicon icon-fire pulse1
-	});
-	*/
-};
-
-// Get temperature
+// Refresh temperature
 function refreshTemp() {
 	getTemp();
 	setTimeout(refreshTemp,5000);
+};
+
+// Get status
+function getStatus() {
+	$.get( "../api/thermostat/getActivationStatus.php", function ( data ) {
+		if (data == "ON")
+			$("label[for='flameIcon']").toggleClass("icon-fire pulse1",true);
+		else
+			$("label[for='flameIcon']").toggleClass("icon-fire pulse1",false);
+	});
+};
+
+// Refresh Status
+function refreshStatus() {
+	getStatus();
+	setTimeout(refreshStatus,10000);
 };
 
 // Get Date-Time clock
