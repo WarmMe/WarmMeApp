@@ -4,17 +4,17 @@
 
 <div id="widgets" class="thermostatPanel">
 	<div id="tempSelectorButtons" class="thermostatWidget">
-		<input id="buttonAuto" type="button" value="Auto" onclick = "disableBtnManual()"/>
-		<input id="buttonManual" type="button" value="Manual" onclick = "disableBtnAuto()"/>
-		<input id="buttonOff" type="button" value="Off" onclick = "disableBtnAll()"/>
+		<input id="buttonAuto" type="button" value="Auto" onclick = "btnManual()"/>
+		<input id="buttonManual" type="button" value="Manual" onclick = "btnAuto()"/>
+		<input id="buttonOff" type="button" value="Off" onclick = "btnOff()"/>
 	</div>
 	
 	<div id="knobWidget" class="thermostatWidget">
 		<input id="knobTempSelector" class="knobTempSelector"/>
-		<label for="tempValue" id="tempValue" class="tempLabel" ></label>
+		<label for="thTempValue" id="thTempValue" class="tempLabel" ></label>
 	</div>
 	
 	<div id="setTempButtons" class="thermostatWidget">
-		<input id="setTemp" type="button" value="setTemp"  onclick="writeTemp($('#tempValue').text())"/>
+		<input id="setTemp" type="button" value="setTemp"  onclick="writeTemp($('#thTempValue').text())"/>
 	</div>
 </div>

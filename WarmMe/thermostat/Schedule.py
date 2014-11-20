@@ -25,17 +25,17 @@ try:
 	targetTemp = cur.fetchone()
 	print 'Target temperature: ' + str(targetTemp[0])
 	
-	if curTemp[0] <= targetTemp[0] + .5:
+	if curTemp[0] <= targetTemp[0] + 1:
 		print 'status: HIGH'
 		GPIO.output(12, GPIO.HIGH)
 		cur = con.cursor()
 		cur.execute("INSERT into activationStatus (state,tempValue,zone_id) values ('ON',"+str(curTemp[0])+",1)")
 		con.commit()
-	elif curTemp[0] > targetTemp[0] + .5:
+	elif curTemp[0] > targetTemp[0] + 1:
 		print 'status: LOW'
 		GPIO.output(12, GPIO.LOW)
 		cur = con.cursor()
-		cur.execute("INSERT into activationStatus (state,tempValue,zone_id) values ('OFF',"+str(curTemp[0])+",1)")
+		cur.execute("INSERT into activationStatus (state,tempValue) values ('OFF',"+str(curTemp[0])+"),1")
 		con.commit()
 
 except mdb.Error, e:

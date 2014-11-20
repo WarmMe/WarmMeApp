@@ -9,5 +9,5 @@ $con = mysql_connect($hostname, $username, $password)
 
 mysql_select_db('warmme', $con) or die(mysql_error());
 
-$result = mysql_query("UPDATE tempTarget set tempvalue=".$_POST["tempValue"], $con) or die(mysql_error());
+$result = mysql_query("UPDATE activationTarget set type='SCHEDULE'", $con) or die(mysql_error());
 ?>

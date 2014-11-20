@@ -16,8 +16,9 @@ tempToWriteOnDB = 0
 con = mdb.connect('localhost', 'root', 'warmme', 'warmme');
 
 # set the value of your SQL query
-queryInsertTemp = "insert into tempMonitor(tempValue) values(%s) ";
-queryGetTempCorrectionPar = "select value from parameters where Param like 'CorrectionValueTHSensor01'";
+queryInsertTemp = "insert into sensorMonitor(sensor_id,value) values (%s,%s) ";
+queryGetTempCorrectionPar = "select value from sensorParameter where paramName like 'TempCorrectionValue'";
+queryGetSensor = "select sensorPiFilePath from sensor";
 
 # get temperature constant correction parameter
 cur = con.cursor()
@@ -27,8 +28,14 @@ tempCorrectionParameter = float(tempCorrectionParameter[0])
 
 # Poll sensor and get temperature
 while tempPolled.split("\n")[0].find("YES") == -1:
+
+	# get temperature sensor fileName to read
+	cur = con.cursor() 
+	cur.execute(queryGetSensor)
+	sensorFileName = cur.fetchone()
+
 	# Open the file that we viewed earlier so that python can see what is in it. Replace the serial number as before.
-	tfile = open("/sys/bus/w1/devices//28-000003bb35f2/w1_slave")
+	tfile = open(sensorFileName[0])
 	# Read all of the text in the file.
 	tempPolled = tfile.read()
 	# Close the file now that the text has been read.
@@ -45,6 +52,6 @@ tempPolled = tempPolled + tempCorrectionParameter
 
 print '>>> TEMPERATURE POLLED: ' + str(tempPolled)
 
-# Print temperature to DB
-cur.execute(queryInsertTemp, tempPolled)
+# Write temperature to DB
+cur.execute(queryInsertTemp, (1,tempPolled))
 con.commit()

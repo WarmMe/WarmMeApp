@@ -9,9 +9,5 @@ $con = mysql_connect($hostname, $username, $password)
 
 mysql_select_db('warmme', $con) or die(mysql_error());
 
-$result = mysql_query("SELECT value from sensorMonitor order by created desc", $con) or die(mysql_error());
-//fetch tha data from the database
-$row = mysql_fetch_array($result);
-$data = round($row{'value'},1);
-echo $data
+$result = mysql_query("UPDATE activationTarget set type='MANUAL', tempvalue=".$_POST["tempValue"], $con) or die(mysql_error());
 ?>
