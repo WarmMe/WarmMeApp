@@ -10,7 +10,7 @@ body,
 	height: 100%;
 	width: 100%;
 	font-family: 'Lato', Arial, sans-serif;
-	/*text-shadow:0.5px 0.5px #FBF7E8;*/
+	text-shadow:0.5px 0.5px #FBF7E8;
 }
 
 body {
@@ -49,6 +49,9 @@ a:hover, a:focus {
 
 .codrops-icon-prev:before {
 	content: "\e004";
+}
+
+#st-trigger-effects {
 }
 
 .buttonMenu {

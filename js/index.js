@@ -1,10 +1,8 @@
-function loadMain() {
-	$.get('./main.html').then(function(responseData) {
+function loadStatus() {
+	$.get('./status.html').then(function(responseData) {
 		$('#mainPanel').empty().append(responseData);
 	});
 }
-
-function loadMeteo() {}
 
 function loadThermostat() {
 	$.get('./thermostat.html').then(function(responseData) {
@@ -12,6 +10,14 @@ function loadThermostat() {
 	});
 }
 
-function loadCalendar() {}
+function loadSchedule() {
+	$.get('./schedule.html').then(function(responseData) {
+		$('#mainPanel').empty().append(responseData);
+	});
+}
 
-function loadStat() {}
+function loadGraph() {
+	$.get('./graph.html').then(function(responseData) {
+		$('#mainPanel').empty().append(responseData);
+	});
+}

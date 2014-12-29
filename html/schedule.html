@@ -1,13 +1,31 @@
-<script src="../js/jquery.knob.js"></script>
-<script src="../js/thermostat.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/thermostat.css" />
+<link href="../css/fullcalendar/fullcalendar.css" rel='stylesheet' type="text/css"/>
+<link href="../css/fullcalendar/fullcalendar.print.css" rel='stylesheet' media='print' type="text/css"/>
+<script src="../js/fullcalendar/moment.min.js"></script>
+<script src="../js/fullcalendar/jquery.min.js"></script>
+<script src="../js/fullcalendar/fullcalendar.min.js"></script>
 
-<div id="thermostat">
-	<div class="tempSelector">
-		<input id="buttonAuto" type="button" value="Auto" onclick = "disableBtnManual()"/>
-		<input id="buttonManual" type="button" value="Manual" onclick = "disableBtnAuto()"/>
-		<input id="buttonOff" type="button" value="Off" onclick = "disableBtnAll()"/>
+<script>
+
+	$(document).ready(function() {
 		
-		<input id="knobTempSelector" class="knobTempSelector">
-	</div>
-</div>
+		$('#calendar').fullCalendar({
+			defaultView: "agendaDay",
+			allDaySlot: false,
+			header: false,
+			editable: true,
+			eventStartEditable: true,
+			eventDurationEditable: true,
+			dragScroll: true,
+			droppable: true,
+			drop: function(date, all_day){
+				external_event_dropped(date, all_day, this);
+			},
+			eventClick: function(cal_event, js_event, view){
+				calendar_event_clicked(cal_event, js_event, view);
+			},
+		});
+	});
+
+</script>
+
+<div id='calendar'></div>

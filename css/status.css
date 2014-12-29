@@ -1,0 +1,103 @@
+.mainPanel {
+	margin-top: 30px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.mainWidget {
+	margin-top: 20px;
+}
+
+.labelMain {
+	font-weight: 300;
+	font-size: 1.625em;
+}
+
+.valueMain {
+	font-weight: 300;
+	font-size: 2.2em;
+}
+
+/*
+.tempWidgetLeft {
+	float:left;
+}
+
+.tempWidgetRight {
+	margin-left:200px;
+}
+*/
+
+.flameIcon {
+	font-family: 'linecons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	display: inline-block;
+	vertical-align: bottom;
+	margin-right: 0.8em;
+	font-size: 2.2em;
+	-webkit-font-smoothing: antialiased;
+}
+
+.pulse1 {
+	-webkit-animation: pulse1 1s linear infinite;
+	-moz-animation: pulse1 1s linear infinite;
+	-ms-animation: pulse1 1s linear infinite;
+	animation: pulse1 1s linear infinite;
+}
+
+@keyframes "pulse1" {
+	0% {
+		color: rgba(165, 25, 25, 1);
+	}
+	90% {
+		color: rgba(255,0,0,0.0);
+	}
+	100% {
+		color: rgba(255,0,0,1.0);
+	}
+	
+}
+
+@-moz-keyframes pulse1 {
+	0% {
+		color: rgba(165, 25, 25, 1);
+	}
+	90% {
+		color: rgba(255,0,0,0.0);
+	}
+	100% {
+		color: rgba(255,0,0,1.0);
+	}
+	
+}
+
+@-webkit-keyframes "pulse1" {
+	0% {
+		color: rgba(165, 25, 25, 1);
+	}
+	90% {
+		color: rgba(255,0,0,0.0);
+	}
+	100% {
+		color: rgba(255,0,0,1.0);
+	}
+	
+}
+
+@-ms-keyframes "pulse1" {
+	0% {
+		color: rgba(165, 25, 25, 1);
+	}
+	90% {
+		color: rgba(255,0,0,0.0);
+	}
+	100% {
+		color: rgba(255,0,0,1.0);
+	}
+	
+}

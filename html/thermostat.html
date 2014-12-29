@@ -4,17 +4,26 @@
 
 <div id="widgets" class="thermostatPanel">
 	<div id="tempSelectorButtons" class="thermostatWidget">
-		<input id="buttonAuto" type="button" value="Auto" onclick = "btnManual()"/>
-		<input id="buttonManual" type="button" value="Manual" onclick = "btnAuto()"/>
+		<input id="buttonSchedule" type="button" value="Schedule" onclick = "btnSchedule()"/>
+		<input id="buttonManual" type="button" value="Manual" onclick = "btnManual()"/>
 		<input id="buttonOff" type="button" value="Off" onclick = "btnOff()"/>
 	</div>
 	
+	<div id ="right" class="tempWidgetRight">
+		<label id="labelThermometerTarget" class="labelThermostat">
+			Previous Target:
+		</label>
+		<div id="thermostatValue">
+			<label for="thermostat" class="valueThermostat"></label>
+		</div>
+	</div>
+			
 	<div id="knobWidget" class="thermostatWidget">
 		<input id="knobTempSelector" class="knobTempSelector"/>
 		<label for="thTempValue" id="thTempValue" class="tempLabel" ></label>
 	</div>
 	
-	<div id="setTempButtons" class="thermostatWidget">
+	<div id="setTempButton" class="thermostatWidget">
 		<input id="setTemp" type="button" value="setTemp"  onclick="writeTemp($('#thTempValue').text())"/>
 	</div>
 </div>
