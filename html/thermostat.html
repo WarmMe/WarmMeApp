@@ -3,12 +3,17 @@
 <link rel="stylesheet" type="text/css" href="../css/thermostat.css" />
 
 <div id="widgets" class="thermostatPanel">
-	<div id="tempSelectorButtons" class="thermostatWidget">
-		<input id="buttonSchedule" type="button" value="Schedule" onclick = "btnSchedule()"/>
-		<input id="buttonManual" type="button" value="Manual" onclick = "btnManual()"/>
-		<input id="buttonOff" type="button" value="Off" onclick = "btnOff()"/>
+	<div class="row">
+		<div class="center-block">
+			<div id="tempSelectorButtons" class="thermostatWidget row">
+
+				<button id="buttonSchedule" type="button" class="btn btn-primary" onclick = "btnSchedule()">Schedule</button>
+				<button id="buttonManual" type="button" class="btn btn-primary" onclick = "btnManual()">Manual</button>
+				<button id="buttonOff" type="button" class="btn btn-primary" value="Off" onclick = "btnOff()">Off</button>
+			</div>
+		</div>
 	</div>
-	
+
 	<div id ="right" class="tempWidgetRight">
 		<label id="labelThermometerTarget" class="labelThermostat">
 			Previous Target:
@@ -24,6 +29,6 @@
 	</div>
 	
 	<div id="setTempButton" class="thermostatWidget">
-		<input id="setTemp" type="button" value="setTemp"  onclick="writeTemp($('#thTempValue').text())"/>
+		<button id="setTemp" type="button" class="btn-lg btn-primary" onclick = "btnOff()">Set target temperature</button>
 	</div>
 </div>

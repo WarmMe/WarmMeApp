@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	refreshTemp();
-	getTarget();
+	refreshTarget();
 	refreshStatus();
 });
 
@@ -9,7 +9,7 @@ function getTemp() {
 	$.get( "../api/sensors/getTemperatureValue.php", function ( data ) {
 		var split = data.split('.');
 		var int = split[0];
-		var dec = split[1];
+		var dec = split[1] || 0;
 		$("label[for='thermometer']").html(int + "." + dec + "<strong>&deg;</strong>");
 	});
 };
@@ -20,14 +20,28 @@ function refreshTemp() {
 	setTimeout(refreshTemp,5000);
 };
 
-// Get temperature
+// Get target temperature
 function getTarget() {
-	$.get( "../api/thermostat/getActivationTempratureTarget.php", function ( data ) {
-		var split = data.split('.');
-		var int = split[0];
-		var dec = split[1];
-		$("label[for='thermostat']").html(int + "." + dec + "<strong>&deg;</strong>");
+	$.get( "../api/thermostat/getActivationType.php", function (status) {
+		console.log(status);
+		if (status == "OFF")
+			$("label[for='thermostat']").html("OFF");
+		else if (status == "MANUAL")
+		$.get( "../api/thermostat/getActivationTempratureTarget.php", function (data) {
+			var split = data.split('.');
+			var int = split[0];
+			var dec = split[1] || 0;
+			$("label[for='thermostat']").html(int + "." + dec + "<strong>&deg;</strong> MANUAL");
+		});
+		else
+			$("label[for='thermostat']").html("SCHEDULE");
 	});
+};
+
+// Refresh temperature
+function refreshTarget() {
+	getTarget();
+	setTimeout(refreshTarget,5000);
 };
 
 // Get status

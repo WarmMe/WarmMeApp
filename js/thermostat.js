@@ -31,17 +31,17 @@ function writeTemp(val) {
 }
 
 function btnManual() {
-	// Visualizza termostato
+	alert("thermostat into manual");
+	$.post("../api/thermostat/setActivationManual.php", {}, function (data) {});
 }
 
 function btnSchedule() {
-	// Rendi invisibile termostato manuale e metti icona calendario o qualcosa
+	alert("thermostat into schedule mode");
 	$.post("../api/thermostat/setActivationSchedule.php", {}, function (data) {});
 }
 
 function btnOff() {
-	// Rendi invisibile termostato manuale
-	//document.getElementById('buttonAuto').setAttribute('disabled', 'disabled');
+	alert("thermostat Off");
 	$.post("../api/thermostat/setActivationOff.php", {}, function (data) {});
 }
 
@@ -50,7 +50,7 @@ function getTempTh() {
 	$.get( "../api/sensors/getTemperatureValue.php", function ( data ) {
 		var split = data.split('.');
 		var int = split[0];
-		var dec = split[1];
+		var dec = split[1] || 0;
 		$("label[for='thTempValue']").html(int + "." + dec + "<strong>&deg;</strong>");
 	});
 };
@@ -60,7 +60,7 @@ function getTarget() {
 	$.get( "../api/thermostat/getActivationTempratureTarget.php", function ( data ) {
 		var split = data.split('.');
 		var int = split[0];
-		var dec = split[1];
+		var dec = split[1] || 0;
 		$("label[for='thermostat']").html(int + "." + dec + "<strong>&deg;</strong>");
 	});
 };

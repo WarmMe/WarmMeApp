@@ -14,21 +14,9 @@ body,
 }
 
 body {
-	color: #5a5350;
 	font-weight: 300;
 	overflow-y: scroll;
 	overflow-x: hidden;
-}
-
-a {
-	text-decoration: none;
-	color: #ed8151;
-	outline: none;
-}
-
-a:hover, a:focus {
-	color: #e86a32;
-	outline: none;
 }
 
 .codrops-icon:before {
@@ -51,8 +39,7 @@ a:hover, a:focus {
 	content: "\e004";
 }
 
-#st-trigger-effects {
-}
+#st-trigger-effects {}
 
 .buttonMenu {
 	font-family: 'linecons';
