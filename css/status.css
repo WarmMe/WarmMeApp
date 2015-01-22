@@ -1,33 +1,3 @@
-.mainPanel {
-	margin-top: 30px;
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-.mainWidget {
-	margin-top: 20px;
-}
-
-.labelMain {
-	font-weight: 300;
-	font-size: 1.625em;
-}
-
-.valueMain {
-	font-weight: 300;
-	font-size: 2.2em;
-}
-
-/*
-.tempWidgetLeft {
-	float:left;
-}
-
-.tempWidgetRight {
-	margin-left:200px;
-}
-*/
-
 .flameIcon {
 	font-family: 'linecons';
 	speak: none;

@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	getTempTh();
 	getTarget();
+	getActiveButton();
 });
 
 $(function() {
@@ -26,22 +27,33 @@ function setTemp(val) {
 
 // Set temperature to DB
 function writeTemp(val) {
-	alert(val);
 	$.post("../api/thermostat/setActivationManual.php", {tempValue:val}, function (data) {});
 }
 
 function btnManual() {
-	alert("thermostat into manual");
+	$("#buttonSchedule").toggleClass("btn-success", false);
+	$("#buttonOff").toggleClass("btn-success", false);	
+	$("#buttonManual").toggleClass("btn-success", true);
+	
+	//alert("thermostat into manual");
 	$.post("../api/thermostat/setActivationManual.php", {}, function (data) {});
 }
 
 function btnSchedule() {
-	alert("thermostat into schedule mode");
+	$("#buttonSchedule").toggleClass("btn-success", true);
+	$("#buttonOff").toggleClass("btn-success", false);	
+	$("#buttonManual").toggleClass("btn-success", false);
+	
+	//alert("thermostat into schedule mode");
 	$.post("../api/thermostat/setActivationSchedule.php", {}, function (data) {});
 }
 
 function btnOff() {
-	alert("thermostat Off");
+	$("#buttonSchedule").toggleClass("btn-success", false);
+	$("#buttonOff").toggleClass("btn-success", true);	
+	$("#buttonManual").toggleClass("btn-success", false);
+	
+	//alert("thermostat Off");
 	$.post("../api/thermostat/setActivationOff.php", {}, function (data) {});
 }
 
@@ -62,5 +74,18 @@ function getTarget() {
 		var int = split[0];
 		var dec = split[1] || 0;
 		$("label[for='thermostat']").html(int + "." + dec + "<strong>&deg;</strong>");
+	});
+};
+
+// Get target temperature
+function getActiveButton() {
+	$.get( "../api/thermostat/getActivationType.php", function (status) {
+		console.log(status);
+		if (status == "OFF")
+			$("#buttonOff").toggleClass("btn-success", true);
+		else if (status == "MANUAL")
+			$("#buttonManual").toggleClass("btn-success", true);
+		else
+			$("#buttonSchedule").toggleClass("btn-success", true);
 	});
 };
