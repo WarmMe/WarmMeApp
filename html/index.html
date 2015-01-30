@@ -1,19 +1,21 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>WarmMe</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<meta name="mobile-web-app-capable" content="yes">
-	
+        <meta name="mobile-web-app-capable" content="yes">
+
 	<!-- Commons -->
 	<script src="../js/jquery-2.0.3.js"></script>
 	<script src="../js/index.js"></script>
 	<link rel="stylesheet" type="text/css" href="../css/index.css" />
 	
 	<!-- SideBarMenu -->
-	<link rel="stylesheet" type="text/css" href="../css/sidebarMenu/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="../css/sidebarMenu/icons.css" />
-	<link rel="stylesheet" type="text/css" href="../css/sidebarMenu/component.css" />
-	<script src="../js/sidebarMenu/modernizr.custom.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="../css/icons.css" />
+	<link rel="stylesheet" type="text/css" href="../css/sidebarMenu.css" />
+	<script src="../js/sidebarEffects.js"></script>
+	<script src="../js/modernizr.custom.js"></script>
 	
 	<!-- BootStrap -->
 	<script src="../thirdPartyTools/bootstrap-dist/js/bootstrap.min.js"></script>
@@ -46,17 +48,19 @@
 				<div class="st-content-inner"><!-- extra div for emulating position:fixed of the menu -->
 					<div id="st-trigger-effects" >
 						<button data-effect="st-effect-4" class="buttonMenu icon-settings"></button>
-							<!--<label for="Title" class="valueMain"></label><label for="flameStaticIcon" class="icon-fire flameIcon">WarmMe</label>-->
 					</div>
-
-					<!-- MAIN PANEL DIV, REPLACED FROM SIDEBAR MENU SELECTION -->
-					<div id="mainPanel" class="mainPanel">
+			
+					<div class="container-fluid">
+						<div class="row">
+							<!-- MAIN PANEL DIV, REPLACED FROM SIDEBAR MENU SELECTION -->
+							<div id="mainPanel" class="mainPanel">
+						</div>
 					</div>
 				</div><!-- /st-content-inner -->
 			</div><!-- /st-content -->
 		</div><!-- /st-pusher -->
 	</div><!-- /st-container -->
-	<script src="../js/sidebarMenu/classie.js"></script>
-	<script src="../js/sidebarMenu/sidebarEffects.js"></script>
+	<script src="../js/classie.js"></script>
+	<script src="../js/sidebarEffects.js"></script>
 </body>
 </html>

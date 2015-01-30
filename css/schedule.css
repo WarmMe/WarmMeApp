@@ -1,4 +1,12 @@
-.calendar {
-	height: 100%;
-	width: 100%;
+.scheduleEntry {
+	margin-top: 15px;
+    margin-right: 15px;
+	/*font-weight: 300;
+	font-size: 1.625em;
+    */
+}
+
+#addButton {
+    margin-top: 15px;
+    margin-left: 15px;
 }

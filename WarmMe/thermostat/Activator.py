@@ -26,15 +26,24 @@ def run():
 		print 'Current temperature: ' + str(curTemp[0])
 
 		# Activation type
-		cur.execute("SELECT tempValue, type, activationTarget_id from activationTarget")
+		cur.execute("SELECT type from activationTarget")
 		qryResult = cur.fetchone()
 
-		if qryResult[1] == 'MANUAL':
+		if qryResult[0] == 'MANUAL':
 			print 'Activation type: MANUAL'
-			print 'Target temperature: ' + str(qryResult[0])
-			heatMe(curTemp[0], qryResult[0])
-
-		elif qryResult[1] == 'SCHEDULE':
+	        
+            # Get manual activator
+			cur = con.cursor()
+			cur.execute("SELECT tempValue from activationManual")
+			manualActivator = cur.fetchone()
+			if manualActivator is None:
+				print "No manual temp set, set GPIO to low"
+				turnOff(curTemp[0]);
+			else:
+				print 'Target temperature: ' + str(manualActivator[0])
+				heatMe(curTemp[0], manualActivator[0])
+            
+		elif qryResult[0] == 'SCHEDULE':
 			print 'Activation type: SCHEDULE'
 
 			# Get shcedule activator
@@ -48,7 +57,7 @@ def run():
 				print 'Target temperature: ' + str(scheduleActivator[0])
 				heatMe(curTemp[0], scheduleActivator[0])
 
-		elif qryResult[1] == 'OFF':
+		elif qryResult[0] == 'OFF':
 			print 'Activation type: OFF'
 			print "set GPIO to low"
 			turnOff(curTemp[0]);

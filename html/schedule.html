@@ -1,31 +1,8 @@
-<link href="../css/fullcalendar/fullcalendar.css" rel='stylesheet' type="text/css"/>
-<link href="../css/fullcalendar/fullcalendar.print.css" rel='stylesheet' media='print' type="text/css"/>
-<script src="../js/fullcalendar/moment.min.js"></script>
-<script src="../js/fullcalendar/jquery.min.js"></script>
-<script src="../js/fullcalendar/fullcalendar.min.js"></script>
+<script src="../js/schedule.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/schedule.css" />
 
-<script>
-
-	$(document).ready(function() {
-		
-		$('#calendar').fullCalendar({
-			defaultView: "agendaDay",
-			allDaySlot: false,
-			header: false,
-			editable: true,
-			eventStartEditable: true,
-			eventDurationEditable: true,
-			dragScroll: true,
-			droppable: true,
-			drop: function(date, all_day){
-				external_event_dropped(date, all_day, this);
-			},
-			eventClick: function(cal_event, js_event, view){
-				calendar_event_clicked(cal_event, js_event, view);
-			},
-		});
-	});
-
-</script>
-
-<div id='calendar'></div>
+<div class="appPanel">
+        <div id="scheduleMain" class="schedule">
+        </div>
+    <button type="button" class="btn btn-succes btn-lg" onclick="addNewScheduleEntry()">Add New</button>
+</div>

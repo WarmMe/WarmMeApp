@@ -27,7 +27,7 @@ function getTarget() {
 		if (status == "OFF")
 			$("label[for='thermostat']").html("OFF");
 		else if (status == "MANUAL")
-		$.get( "../api/thermostat/getActivationTempratureTarget.php", function (data) {
+		$.get( "../api/thermostat/getActivationManual.php", function (data) {
 			var split = data.split('.');
 			var int = split[0];
 			var dec = split[1] || 0;

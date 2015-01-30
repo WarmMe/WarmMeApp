@@ -69,7 +69,7 @@ function getTempTh() {
 
 // Get temperature
 function getTarget() {
-	$.get( "../api/thermostat/getActivationTempratureTarget.php", function ( data ) {
+	$.get( "../api/thermostat/getActivationManual.php", function ( data ) {
 		var split = data.split('.');
 		var int = split[0];
 		var dec = split[1] || 0;

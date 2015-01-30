@@ -2,25 +2,17 @@
 <script src="../js/thermostat.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/thermostat.css" />
 
-<div id="widgets" class="thermostatPanel">
-	<div class="row">
-		<div class="center-block">
-			<div id="tempSelectorButtons" class="thermostatWidget row">
+<div class="appPanel">
 
-				<button id="buttonSchedule" type="button" class="btn btn-primary" onclick = "btnSchedule()">Schedule</button>
-				<button id="buttonManual" type="button" class="btn btn-primary" onclick = "btnManual()">Manual</button>
-				<button id="buttonOff" type="button" class="btn btn-primary" value="Off" onclick = "btnOff()">Off</button>
-			</div>
-		</div>
+	<div class="thermostatWidget">
+		<button id="buttonSchedule" type="button" class="btn btn-primary" onclick = "btnSchedule()" data-toggle="modal" data-target="#modalSchedule" >Schedule</button>
+		<button id="buttonManual" type="button" class="btn btn-primary" onclick = "btnManual()"  data-toggle="modal" data-target="#modalManual" >Manual</button>
+		<button id="buttonOff" type="button" class="btn btn-primary" value="Off" onclick = "btnOff()" data-toggle="modal" data-target="#modalOff">Off</button>
 	</div>
-
-	<div id ="right" class="tempWidgetRight">
-		<label id="labelThermometerTarget" class="labelThermostat">
-			Previous Target:
-		</label>
-		<div id="thermostatValue">
-			<label for="thermostat" class="valueThermostat"></label>
-		</div>
+	
+	Previous Target:
+	<div id="thermostatValue">
+		<label for="thermostat" class="valueThermostat appValues"></label>
 	</div>
 			
 	<div id="knobWidget" class="thermostatWidget">
@@ -28,7 +20,79 @@
 		<label for="thTempValue" id="thTempValue" class="tempLabel" ></label>
 	</div>
 	
-	<div id="setTempButton" class="thermostatWidget">
-		<button id="setTemp" type="button" class="btn-lg btn-primary" onclick = "btnOff()">Set target temperature</button>
+	<div class="thermostatWidget">
+		<button id="setTemp" type="button" class="btn-lg btn-primary" onclick = "writeTemp($('#thTempValue').text())" data-toggle="modal" data-target="#modalManualKnob">Set target temperature</button>
+	</div>
+	
+		<!-- Modal Manual-->
+	<div class="modal fade" id="modalManual" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Activation changed</h4>
+				</div>
+				<div class="modal-body">
+                    Activation <h1>MANUAL</h1>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<!-- Modal Schedule-->
+	<div class="modal fade" id="modalSchedule" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Activation changed</h4>
+				</div>
+				<div class="modal-body">
+                    Activation <h1>SCHEDULE</h1>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal Off-->
+	<div class="modal fade" id="modalOff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Activation changed</h4>
+				</div>
+				<div class="modal-body">
+                    <h1>OFF</h1>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<!-- Modal Off-->
+	<div class="modal fade" id="modalManualKnob" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Activation changed</h4>
+				</div>
+				<div class="modal-body">
+                    New temperature <h1>set</h1>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
