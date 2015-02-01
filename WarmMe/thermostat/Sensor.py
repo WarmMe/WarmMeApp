@@ -53,27 +53,27 @@ class DHT():
         
         # Get temperature correction parameter
         queryGetTempCorrectionPar = "select value from sensorParameter where paramName like 'TempCorrectionValue'"
-        cur = con.cursor()
         cur.execute(queryGetTempCorrectionPar)
-        self.tempCorrectionParameter = float(cur.fetchone()[0])
+	global tempCorrectionParameter
+        tempCorrectionParameter = float(cur.fetchone()[0])
 
         # Get DHT type (11,22)
         queryGetDHTType = "select value from sensorParameter where paramName like 'DHTType'";
         cur.execute(queryGetDHTType)
+	global dhtType
         dhtType = cur.fetchone()[0]
 
         # Get connectionPin
         queryConnectionPin = "select value from sensorParameter where paramName like 'ConnectionPinNumber'";
         cur.execute(queryConnectionPin)
+	global connectionPin
         connectionPin = cur.fetchone()[0]
-
-        self.sensorType = dhtType
-        self.pin = connectionPin
 
     def poll(self):
         # Try to grab a sensor reading.  Use the read_retry method which will retry up
         # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
-        humidity, temperature = Adafruit_DHT.read_retry(self.sensor, self.pin)
+        # humidity, temperature = Adafruit_DHT.read_retry(str(dhtType), str(connectionPin))
+	humidity, temperature = Adafruit_DHT.read_retry(22, 4)
 
         # Note that sometimes you won't get a reading and
         # the results will be null (because Linux can't
@@ -81,7 +81,7 @@ class DHT():
         # If this happens try again!
         while True:
             if humidity is not None and temperature is not None:
-                    return (temperature + self.tempCorrectionParameter, humidity)
+                    return (temperature + tempCorrectionParameter, humidity)
 
     def __init__(self):
         self.initSensor()
