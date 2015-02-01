@@ -45,7 +45,7 @@ class DS18B20:
     def __init__(self):
         self.initSensor()
         
-class DHT22():
+class DHT():
 
     def initSensor(self):
         # Get db connection

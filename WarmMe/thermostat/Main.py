@@ -16,9 +16,9 @@ def initializeSensors():
     if sensorType[0] == "DS18B20":
         print "Device: DS18B20"
         sensor = Sensor.DS18B20()
-    elif sensorType[0] == "DHT22":
-        print "Device: DHT22"
-        sensor = Sensor.DHT22()
+    elif sensorType[0] == "DHT":
+        print "Device: DHT"
+        sensor = Sensor.DHT()
     
 def activator(sec):
 	while True:

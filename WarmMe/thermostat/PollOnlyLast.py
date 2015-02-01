@@ -12,8 +12,6 @@ def run(sensor):
 
     tempPolled = sensor.poll()[0]
     humidityPolled = sensor.poll()[1]
- 
-    print '>>> TEMPERATURE POLLED: ' + str(tempPolled)
     
     #----------------------------------------------------------------------
     # insert the values into the database
