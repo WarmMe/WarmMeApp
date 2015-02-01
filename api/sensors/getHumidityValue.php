@@ -12,6 +12,6 @@ mysql_select_db('warmme', $con) or die(mysql_error());
 $result = mysql_query("SELECT humidity from sensorMonitorLast", $con) or die(mysql_error());
 //fetch tha data from the database
 $row = mysql_fetch_array($result);
-$data = round($row{'value'},1);
+$data = round($row{'humidity'},1);
 echo $data
 ?>

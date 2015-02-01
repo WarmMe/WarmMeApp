@@ -9,13 +9,14 @@ def run(sensor):
 
     if sensor == None:
         return
-    
-    tempPolled = sensor.poll()[0]
-    humidityPolled = sensor.poll()[1]
+
+    valuesPolled = sensor.poll()
+    tempPolled = valuesPolled[0]
+    humidityPolled = valuesPolled[1]
 	
-	#----------------------------------------------------------------------
-	# insert the values into the database
-	#----------------------------------------------------------------------
+    #----------------------------------------------------------------------
+    # insert the values into the database
+    #----------------------------------------------------------------------
     
     # set the value of your SQL query
     queryInsertTemp = "insert into sensorMonitor(sensor_id,value,humidity) values (%s,%s,%s) ";

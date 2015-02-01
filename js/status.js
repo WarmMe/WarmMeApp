@@ -16,6 +16,7 @@ function getTemp() {
 	// humidity
 	$.get( "../api/sensors/getHumidityValue.php", function ( data ) {
                 var humidity = data;
+		console.log(data)
 		if (humidity != 0)
 			$("#humidityPanel").toggleClass("hidden", false);
                 	$("label[for='humidity']").html(humidity + "<strong>%</strong>");
