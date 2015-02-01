@@ -1,29 +1,24 @@
-import MySQLdb as mdb
 import sys
 import time
 import Adafruit_DHT
+import DB
 
 class DS18B20:
     def initSensor(self):
         # Get db connection
-        global con
-        con = mdb.connect('localhost', 'root', 'warmme', 'warmme');
-        cur = con.cursor()
+        cur = DB.con.cursor()
 
         # Get temperature correction parameter
         queryGetTempCorrectionPar = "select value from sensorParameter where paramName like 'TempCorrectionValue'"
-        cur = con.cursor()
         cur.execute(queryGetTempCorrectionPar)
         global tempCorrectionParameter
-        tempCorrectionParameter = cur.fetchone()
-        tempCorrectionParameter = float(tempCorrectionParameter[0])
+        tempCorrectionParameter = float(cur.fetchone()[0])
 
         # Get linux sensor filePath
         queryGetFilePath = "select value from sensorParameter where paramName like 'FilePath'";
         cur.execute(queryGetFilePath)
         global filePath
-        filePath = cur.fetchone()
-        filePath = filePath[0]
+        filePath = cur.fetchone()[0]
 
     def poll(self):
         tempNotReaded = True
@@ -53,21 +48,40 @@ class DS18B20:
 class DHT22():
 
     def initSensor(self):
-        self.sensor = 22
-        self.pin = 4
+        # Get db connection
+        cur = DB.con.cursor()
+        
+        # Get temperature correction parameter
+        queryGetTempCorrectionPar = "select value from sensorParameter where paramName like 'TempCorrectionValue'"
+        cur = con.cursor()
+        cur.execute(queryGetTempCorrectionPar)
+        self.tempCorrectionParameter = float(cur.fetchone()[0])
+
+        # Get DHT type (11,22)
+        queryGetDHTType = "select value from sensorParameter where paramName like 'DHTType'";
+        cur.execute(queryGetDHTType)
+        dhtType = cur.fetchone()[0]
+
+        # Get connectionPin
+        queryConnectionPin = "select value from sensorParameter where paramName like 'ConnectionPinNumber'";
+        cur.execute(queryConnectionPin)
+        connectionPin = cur.fetchone()[0]
+
+        self.sensorType = dhtType
+        self.pin = connectionPin
 
     def poll(self):
-	# Try to grab a sensor reading.  Use the read_retry method which will retry up
-	# to 15 times to get a sensor reading (waiting 2 seconds between each retry).
-	humidity, temperature = Adafruit_DHT.read_retry(self.sensor, self.pin)
+        # Try to grab a sensor reading.  Use the read_retry method which will retry up
+        # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
+        humidity, temperature = Adafruit_DHT.read_retry(self.sensor, self.pin)
 
-	# Note that sometimes you won't get a reading and
-	# the results will be null (because Linux can't
-	# guarantee the timing of calls to read the sensor).  
-	# If this happens try again!
-	while True:
-	    if humidity is not None and temperature is not None:
-                return (temperature, humidity)
+        # Note that sometimes you won't get a reading and
+        # the results will be null (because Linux can't
+        # guarantee the timing of calls to read the sensor).  
+        # If this happens try again!
+        while True:
+            if humidity is not None and temperature is not None:
+                    return (temperature + self.tempCorrectionParameter, humidity)
 
     def __init__(self):
         self.initSensor()
