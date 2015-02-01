@@ -20,4 +20,4 @@ function getElements() {
     }
 };
 
-    getRecordsFromDB();
+function getRecordsFromDB() {};

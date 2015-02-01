@@ -6,12 +6,20 @@ $(document).ready(function() {
 
 // Get temperature
 function getTemp() {
+	// Temperature
 	$.get( "../api/sensors/getTemperatureValue.php", function ( data ) {
 		var split = data.split('.');
 		var int = split[0];
 		var dec = split[1] || 0;
 		$("label[for='thermometer']").html(int + "." + dec + "<strong>&deg;</strong>");
 	});
+	// humidity
+	$.get( "../api/sensors/getHumidityValue.php", function ( data ) {
+                var humidity = data;
+		if (humidity != 0)
+			$("#humidityPanel").toggleClass("hidden", false);
+                	$("label[for='humidity']").html(humidity + "<strong>%</strong>");
+        });
 };
 
 // Refresh temperature
@@ -23,18 +31,25 @@ function refreshTemp() {
 // Get target temperature
 function getTarget() {
 	$.get( "../api/thermostat/getActivationType.php", function (status) {
-		console.log(status);
 		if (status == "OFF")
 			$("label[for='thermostat']").html("OFF");
 		else if (status == "MANUAL")
-		$.get( "../api/thermostat/getActivationManual.php", function (data) {
-			var split = data.split('.');
-			var int = split[0];
-			var dec = split[1] || 0;
-			$("label[for='thermostat']").html(int + "." + dec + "<strong>&deg;</strong> MANUAL");
-		});
+			$.get( "../api/thermostat/getActivationManual.php", function (data) {
+				var split = data.split('.');
+				var int = split[0];
+				var dec = split[1] || 0;
+				$("label[for='thermostat']").html(int + "." + dec + "<strong>&deg;</strong> MANUAL");
+			});
 		else
-			$("label[for='thermostat']").html("SCHEDULE");
+	                $.get( "../api/thermostat/getActivationSchedule.php", function (data) {
+                	        var split = data.split('.');
+	                        var int = split[0];
+	                        var dec = split[1] || 0;
+				if (int != 0)
+        	                	$("label[for='thermostat']").html(int + "." + dec + "<strong>&deg;</strong> SCHEDULE");
+				else
+					$("label[for='thermostat']").html("SCHEDULE,<br> Now Off");
+			});
 	});
 };
 
