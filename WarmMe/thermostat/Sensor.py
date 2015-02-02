@@ -72,8 +72,9 @@ class DHT():
     def poll(self):
         # Try to grab a sensor reading.  Use the read_retry method which will retry up
         # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
-        # humidity, temperature = Adafruit_DHT.read_retry(str(dhtType), str(connectionPin))
-	humidity, temperature = Adafruit_DHT.read_retry(22, 4)
+	#humidity, temperature = Adafruit_DHT.read_retry(22, 4)
+
+	humidity, temperature = Adafruit_DHT.read_retry(int(dhtType), connectionPin)
 
         # Note that sometimes you won't get a reading and
         # the results will be null (because Linux can't
