@@ -17,7 +17,7 @@ function loadSchedule() {
 }
 
 function loadGraph() {
-	$.get('./graph.html').then(function(responseData) {
+	$.get('./graphs.html').then(function(responseData) {
 		$('#mainPanel').empty().append(responseData);
 	});
 }

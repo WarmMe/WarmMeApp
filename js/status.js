@@ -16,7 +16,6 @@ function getTemp() {
 	// humidity
 	$.get( "../api/sensors/getHumidityValue.php", function ( data ) {
                 var humidity = data;
-		console.log(data)
 		if (humidity != 0)
 			$("#humidityPanel").toggleClass("hidden", false);
                 	$("label[for='humidity']").html(humidity + "<strong>%</strong>");
@@ -75,20 +74,3 @@ function refreshStatus() {
 	getStatus();
 	setTimeout(refreshStatus,2000);
 };
-
-// Get Date-Time clock
-/*
-function refreshTime() {
-	var currentdate = new Date();
-	var date = currentdate.getDate() + "/"
-	+ (currentdate.getMonth()+1)  + "/"
-	+ currentdate.getFullYear();
-
-	var time = currentdate.getHours() + ":"
-	+ currentdate.getMinutes() + ":"
-	+ currentdate.getSeconds();
-	$("label[for='date&time']").html(date + ", " + time);
-	
-	setTimeout(refreshTime,1000);
-};
-*/

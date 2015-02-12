@@ -1,40 +1,56 @@
 $(document).ready(function() {
-	//getGraph(24 ore a partire da ora);
-
-	
-	
-	
-	var d1 = [];
-	for (var i = 0; i < 14; i += 0.5) {
-		d1.push([i, Math.sin(i)]);
-	}
-	
-	var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
-	
-	// A null signifies separate line segments
-	
-	var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
-	
-	$.plot("#graph", [ d1, d2, d3 ]);
-	
-	
-	
+    getDailyGraph();
 });
 
-//getGraph(val) {
-function getGraph() {
-		//var plot = $("#graph").plot(data, options).data("plot");
-	
-	var d1 = [];
-	for (var i = 0; i < 14; i += 0.5) {
-		d1.push([i, Math.sin(i)]);
-	}
-	
-	var d2 = [[0, 3], [4, 8], [8, 5], [9, 13]];
-	
-	// A null signifies separate line segments
-	
-	var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
-	
-	$.plot("#graph", [ d1, d2, d3 ]);
+function getDailyGraph() {
+    
+    $.getJSON("ajax/../../api/graphs/getDaily.php", function(data) {
+        var counter = 0;
+        var itemsPairs = [];
+        // Get schedules tag
+        $.each(data, function(key, val) {
+            //console.log(val.created);
+            //console.log(val.value);
+            var pair = []
+            pair.push(new Date(val.created).getTime());
+            pair.push(parseFloat(val.value));
+            itemsPairs.push(pair);
+            //console.log(itemsPairs);
+            counter++;
+        });
+       
+        // Create flot dataset
+        var dataset = [
+            {
+                label: "Temperature",
+                data: itemsPairs,
+                color: "#FF0000",
+                //points: { fillColor: "#FF0000", show: true },
+                lines: { show: true }
+            }
+        ];
+         
+        // Create flot options
+        var options = {
+            series: {
+                shadowSize: 5
+            },
+            xaxis: {
+                mode: "time",
+                timeformat: "%H:%M",
+                color: "black",       
+                axisLabel: "Time",
+                axisLabelUseCanvas: true,
+            },
+            grid: {
+                hoverable: true,
+                borderWidth: 3,
+                mouseActiveRadius: 50,
+                backgroundColor: { colors: ["#ffffff", "#EDF5FF"] },
+            }
+        };
+        
+        //$.plot($("#graph"), [[[0,21.375],[1,21.25],[2,21.187],[3,21.375],[4,21.312]]]);
+        $.plot($("#graph"), dataset, options);
+    });
 };
