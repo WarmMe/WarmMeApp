@@ -2,6 +2,8 @@ $(document).ready(function() {
 	getTempTh();
 	getTarget();
 	getActiveButton();
+    
+    $(".loader").hide();
 });
 
 $(function() {

@@ -5,3 +5,9 @@
 	left: -145px;
 	top: -85px;
 }
+
+.thermostatWidget {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

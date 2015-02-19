@@ -2,6 +2,8 @@ $(document).ready(function() {
 	refreshTemp();
 	refreshTarget();
 	refreshStatus();
+    
+    $(".loader").fadeOut();
 });
 
 // Get temperature

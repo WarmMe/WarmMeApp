@@ -69,9 +69,20 @@ body,
 	border-radius: 1px;
 	font-weight: 400;
 	outline: none;
+    z-index: 9999;
 }
 
 .buttonMenu:hover,
 .buttonMenu:active {
 	background: #e86a32;
+}
+
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9998;
+	background: url('images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
 }

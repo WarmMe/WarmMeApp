@@ -1,5 +1,13 @@
 $(document).ready(function() {
     getDailyGraph();
+    
+    window.onresize = function(event) {
+        $(".loader").fadeIn();
+        reloadGraph();
+        $(".loader").fadeOut("slow");
+    }
+    
+    $(".loader").fadeOut("slow");
 });
 
 function getDailyGraph() {
@@ -54,3 +62,9 @@ function getDailyGraph() {
         $.plot($("#graph"), dataset, options);
     });
 };
+
+function reloadGraph() {
+	$.get('./graphs.html').then(function(responseData) {
+		$('#mainPanel').empty().append(responseData);
+	});
+}

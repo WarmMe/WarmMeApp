@@ -72,7 +72,7 @@ def run():
 def heatMe(curTemp, target):
 	cur = con.cursor()
 
-	if curTemp <= target - .4:
+	if curTemp <= target - .3:
 		print 'status: HIGH'
 		GPIO.output(12, GPIO.HIGH)
 		cur.execute("INSERT into activationStatus (state,tempValue,zone_id) values ('ON',"+str(curTemp)+",1)")
@@ -80,7 +80,7 @@ def heatMe(curTemp, target):
 		cur = con.cursor()
 		cur.execute("Update activationStatusLast set state = 'ON', tempValue = "+str(curTemp))
 		con.commit()
-	elif curTemp > target + .4:
+	elif curTemp > target + .3:
 		print 'status: LOW'
 		GPIO.output(12, GPIO.LOW)
 		cur = con.cursor()

@@ -1,8 +1,19 @@
 <div id="toReplace" class="scheduleEntry">
-    <input type="text" class="form-control" placeholder="text">
-    <input type="text" class="form-control" placeholder="text">
-    <input type="text" class="form-control" placeholder="text">
-    <button type="button" class="btn btn-success">Add</button>
-    <button type="button" class="btn btn-primary">Edit</button>
-    <button type="button" class="btn btn-danger" onclick="deleteScheduleEntry(this)">Remove</button>
+    <input id="fromValue" class="form-control" readonly>
+    <input id="toValue" class="form-control" readonly>
+
+    <input id="tempValue" class="form-control" type="number">
+    
+    <div>
+        <label><input id="Mon" type="checkbox" aria-label="Mon">M</label>
+        <label><input id="Tue" type="checkbox" aria-label="Tue">T</label>
+        <label><input id="Wed" type="checkbox" aria-label="Wed">W</label>
+        <label><input id="Thu" type="checkbox" aria-label="Thu">T</label>
+        <label><input id="Fry" type="checkbox" aria-label="Fry">F</label>
+        <label><input id="Sat" type="checkbox" aria-label="Sat">S</label>
+        <label><input id="Sat" type="checkbox" aria-label="Sat">S</label>
+    </div>
+    
+    <button type="button" class="btn btn-success update">Save</button>
+    <button type="button" class="btn btn-danger delete" onclick="deleteScheduleEntry(this)">Remove</button>
 </div>

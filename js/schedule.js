@@ -3,32 +3,43 @@ $(document).ready(function() {
 });
 
 function addScheduleEntry(val) {
-    //$.get('./scheduleEntry.html').then(function(responseData) {
-    //    $('#scheduleMain').append($.get(responseData));
-    //});
-  
-    $.get('scheduleEntry.html', function (data) {
+
+    var getEntryBlock = $.get('scheduleEntry.html', function (data) {
         $("#scheduleMain").append(data);
     });
     
-    if ($("#toReplace").length > 0){
-        console.log("null");
-    } else
-        $("#toReplace").append("dassssssssdsadsadasdas");
-    
-    // set new ID
-    //$('.scheduleEntry').attr('id', 'val.activationSchedule_id')
-    //document.getElementById("#toReplace").id = 'id_new'
-    //document.getElementById("#toReplace").html("<p>AAAAAAAAA</p>");
-    
-    // Get childrens
-    //var children = $("#toReplace").children();
-    //console.log($("#toReplace").children());
-    //$(children).each(function(index, item) {
-    //    console.log("aa");        
-    //});
-    //entry.id = val.activationSchedule_id;
-    //console.log(entry.children)
+    $.when(getEntryBlock).done(function() {
+        // set new ID
+        var divBlock = $('#toReplace')
+        divBlock.attr('id', val.activationSchedule_id);
+
+        // timePicker FROM
+        var timePickerFrom = divBlock.children('#fromValue').clockpicker({
+            placement: 'bottom',
+            align: 'left',
+            donetext: 'Done',
+            autoclose: true,
+            'default': val.startTime
+        });
+        divBlock.children("#fromValue").val(val.startTime);
+                                
+        // timePicker FROM
+        var timePickerTo = divBlock.children('#toValue').clockpicker({
+            placement: 'bottom',
+            align: 'left',
+            donetext: 'Done',
+            autoclose: true,
+            'default': val.endTime
+        });
+        divBlock.children("#toValue").val(val.endTime);
+
+        divBlock.children("#tempValue").val(val.tempValue);
+        
+        // pass ID to onclick functions
+        divBlock.children(".update").attr("onclick","updateScheduleEntry("+val.activationSchedule_id+")");
+        
+        $(".loader").hide();
+    });
 };
 
 function addNewScheduleEntry() {
@@ -37,25 +48,36 @@ function addNewScheduleEntry() {
     });
 };
 
-function deleteScheduleEntry(from) {
-     from.parentNode.parentNode.removeChild(from.parentNode);
+function deleteScheduleEntry(fromElement) {
+     fromElement.parentNode.parentNode.removeChild(fromElement.parentNode);
 };
 
 function insertScheduleEntry(from) {
      from.parentNode.parentNode.removeChild(from.parentNode);
 };
 
-function updateScheduleEntry(from) {
-     from.parentNode.parentNode.removeChild(from.parentNode);
+function updateScheduleEntry(ID) {
+    $.post( "../api/schedule/updateSchedule.php", {
+        fromVal: document.getElementById(ID).children[0].value,
+        toVal: document.getElementById(ID).children[1].value,
+        tempValue: document.getElementById(ID).children[2].value,
+        idVal: ID
+    });
+    
+    //$.post( "../api/schedule/updateSchedules.php", {
+    //    from: $(ID).children("#fromValue").val(),
+    //    to: fromElement.parentNode.children("#toValue").val(),
+    //    tempValue: fromElement.parentNode.children("#tempValue").val()
+    //});
+    
+    //console.log(ID);
+    //console.log(document.getElementById(ID).children[0].value);
 };
 
 function getRecordsFromDB() {
-    $.getJSON("ajax/../../api/thermostat/getSchedules.php", function(data) {
-        var items = [];
-        // Get schedules tag
+    $.getJSON("ajax/../../api/schedule/getSchedules.php", function(data) {
+        // Get schedules tag "Schedules"
         $.each(data.Schedules, function(key, val) {
-            items.push(val);
-            //console.log(val);
             // Get values array 
             addScheduleEntry(val);
         });

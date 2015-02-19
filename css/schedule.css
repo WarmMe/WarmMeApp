@@ -6,7 +6,7 @@
     */
 }
 
-#addButton {
-    margin-top: 15px;
-    margin-left: 15px;
+#scheduleMain {
+    max-height:400px;
+    overflow-y:auto;
 }
