@@ -37,6 +37,7 @@ function addScheduleEntry(val) {
         
         // pass ID to onclick functions
         divBlock.children(".update").attr("onclick","updateScheduleEntry("+val.activationSchedule_id+")");
+        divBlock.children(".delete").attr("onclick","deleteScheduleEntry(this,"+val.activationSchedule_id+")");
         
         $(".loader").hide();
     });
@@ -48,7 +49,10 @@ function addNewScheduleEntry() {
     });
 };
 
-function deleteScheduleEntry(fromElement) {
+function deleteScheduleEntry(fromElement, ID) {
+     $.post( "../api/schedule/deleteSchedule.php", {
+        idVal: ID
+     });
      fromElement.parentNode.parentNode.removeChild(fromElement.parentNode);
 };
 
@@ -57,6 +61,7 @@ function insertScheduleEntry(from) {
 };
 
 function updateScheduleEntry(ID) {
+    console.log(document.getElementById(ID).children[1].value);
     $.post( "../api/schedule/updateSchedule.php", {
         fromVal: document.getElementById(ID).children[0].value,
         toVal: document.getElementById(ID).children[1].value,

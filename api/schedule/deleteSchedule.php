@@ -9,10 +9,7 @@ $con = mysql_connect($hostname, $username, $password)
 
 mysql_select_db('warmme', $con) or die(mysql_error());
 
-$sql = "UPDATE activationSchedule set
-startTime= '".$_POST["fromVal"]."',
-endTime= '".$_POST["toVal"]."',
-tempValue= ".$_POST["tempValue"]." where activationSchedule_id =".$_POST["idVal"];
+$sql = "delete activationSchedule where activationSchedule_id = ".$_POST["idVal"];
 
 $result = mysql_query($sql, $con) or die(mysql_error());
 ?>  
