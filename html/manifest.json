@@ -1,0 +1,9 @@
+{
+  "short_name": "WarmMe",
+  "name": "WarmMe",
+  "icons": [{
+    "src": "../css/images/icon.png",
+    "sizes": "128x128"
+  }],
+  "display": "standalone"
+}
