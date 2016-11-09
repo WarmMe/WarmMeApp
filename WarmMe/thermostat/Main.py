@@ -11,7 +11,7 @@ def initializeSensors():
     queryGetSensorType = "select DeviceType from sensor"
     cur.execute(queryGetSensorType)
     sensorType = cur.fetchone()
-    
+
     global sensor
     if sensorType[0] == "DS18B20":
         print "Device: DS18B20"

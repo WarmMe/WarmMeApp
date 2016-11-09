@@ -32,7 +32,7 @@ def run():
 		if qryResult[0] == 'MANUAL':
 			print 'Activation type: MANUAL'
 	        
-            # Get manual activator
+	               # Get manual activator
 			cur = con.cursor()
 			cur.execute("SELECT tempValue from activationManual")
 			manualActivator = cur.fetchone()
@@ -48,7 +48,8 @@ def run():
 
 			# Get shcedule activator
 			cur = con.cursor()
-			cur.execute("SELECT tempValue from activationSchedule where startTime <= '" + str(curTime) + "' and endTime >= '" + str(curTime) + "'")
+			qry = "SELECT tempValue from activationSchedule where (startTime <= '" + str(curTime) + "' and endTime >= '" + str(curTime) + "') or ((endTime - startTime) < 0 and (('" + str(curTime) + "' >= startTime and '" + str(curTime) + "' < '23:59:59') or ('" + str(curTime) + "' < endTime)))"
+			cur.execute(qry)
 			scheduleActivator = cur.fetchone()
 			if scheduleActivator is None:
 				print "No schedule, set GPIO to low"

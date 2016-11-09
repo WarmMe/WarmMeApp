@@ -1,3 +1,29 @@
+var timeDiff = (new Date()).getTimezoneOffset()/60;
+
+function getLocalTime(utcTime) {
+	var hour = utcTime.split(':')[0];
+        var hourIta = parseInt(hour) - timeDiff;
+        if (hourIta < 0) {
+                hourIta = 24 - hourIta;
+        } else if (hourIta > 24) {
+		hourIta = hourIta - 24
+	}
+        var localTime = hourIta + ':' + utcTime.split(':')[1] + ':' + utcTime.split(':')[2];
+        return localTime;
+}
+
+function getUtcTime(localTime) {
+        var hour = localTime.split(':')[0];
+        var hourIta = parseInt(hour) + timeDiff;
+        if (hourIta > 24) {
+                hourIta = hourIta - 24;
+        } else if (hourIta < 0) {
+		hourIta = 24 - hourIta;
+	} 
+        var utcTime = hourIta + ':' + localTime.split(':')[1] + ':' + localTime.split(':')[2];
+        return utcTime;
+}
+
 $(document).ready(function() {
     getRecordsFromDB();
 });
@@ -21,8 +47,8 @@ function addScheduleEntry(val) {
             autoclose: true,
             'default': val.startTime
         });
-        divBlock.children("#fromValue").val(val.startTime);
-                                
+        divBlock.children("#fromValue").val(getLocalTime(val.startTime));
+
         // timePicker FROM
         var timePickerTo = divBlock.children('#toValue').clockpicker({
             placement: 'bottom',
@@ -31,8 +57,7 @@ function addScheduleEntry(val) {
             autoclose: true,
             'default': val.endTime
         });
-        divBlock.children("#toValue").val(val.endTime);
-
+        divBlock.children("#toValue").val(getLocalTime(val.endTime));
         divBlock.children("#tempValue").val(val.tempValue);
         
         // pass ID to onclick functions
@@ -61,14 +86,16 @@ function insertScheduleEntry(from) {
 };
 
 function updateScheduleEntry(ID) {
-    console.log(document.getElementById(ID).children[1].value);
     $.post( "../api/schedule/updateSchedule.php", {
-        fromVal: document.getElementById(ID).children[0].value,
-        toVal: document.getElementById(ID).children[1].value,
+        fromVal: getUtcTime(document.getElementById(ID).children[0].value),
+        toVal: getUtcTime(document.getElementById(ID).children[1].value),
         tempValue: document.getElementById(ID).children[2].value,
         idVal: ID
     });
     
+console.log(getUtcTime(document.getElementById(ID).children[0].value));
+console.log(getUtcTime(document.getElementById(ID).children[1].value));
+
     //$.post( "../api/schedule/updateSchedules.php", {
     //    from: $(ID).children("#fromValue").val(),
     //    to: fromElement.parentNode.children("#toValue").val(),
